@@ -7,8 +7,10 @@ public class Vehicle {
     private String type;
     private String make;
     private String model;
+    private int id;
     private int speed;
 
+    static int counter = 0;
 
     public Vehicle(){
         numDoors = 4;
@@ -16,6 +18,7 @@ public class Vehicle {
         make = "Honda";
         model = "Civic";
         speed = 0;
+        id  = counter++;
     }
 
     public Vehicle(int numDoors, String type, String make, String model){
@@ -23,6 +26,8 @@ public class Vehicle {
         this.type = type;
         this.make = make;
         this.model = model;
+        this.speed = 0;
+        id  = counter++;
     }
 
     public int getNumDoors(){
@@ -63,5 +68,13 @@ public class Vehicle {
 
     public void setSpeed(int speed) {
         this.speed = speed;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
     }
 }
