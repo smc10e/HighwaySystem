@@ -1,5 +1,6 @@
 import java.util.HashMap;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Created by Sean on 10/30/2015.
@@ -36,5 +37,17 @@ public class driver {
         System.out.println("Num Cars on highway: " + highway.getNumVehicles());
 
         highway.display();
+
+        highway.update();
+
+/*        while(true){
+            car = new Vehicle();
+            car.setSpeed(1);
+
+            Random random = new Random();
+            int n = random.nextInt(4);
+
+            highway.addVehicle(n, car);
+        }*/
     }
 }

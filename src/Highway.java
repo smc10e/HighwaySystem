@@ -1,6 +1,4 @@
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by smcampbell on 10/30/2015.
@@ -10,15 +8,20 @@ public class Highway {
     private int numLanes;
     private int maxVehicles;
     private int numVehicles = 0;
-    private HashMap<Integer, List<Vehicle>> lanes = new HashMap<>();
+    private int laneLength;
+    private HashMap<Integer, Vector<Vehicle>> lanes = new HashMap<>();
 
     public Highway(){
         numLanes = 4;
         maxVehicles = 20;
+        laneLength = 25;
 
+        //Vector<Vehicle> v;
         for(int i = 0; i < numLanes; i++){
-            lanes.put(i, new LinkedList<>());
+            lanes.put(i, new Vector<>());
         }
+
+        //v.setSize(25);
     }
 
     public Highway(int numLanes, int maxVehicles){
@@ -26,13 +29,13 @@ public class Highway {
         this.maxVehicles = maxVehicles;
 
         for(int i = 0; i < numLanes; i++){
-            this.lanes.put(i, new LinkedList<>());
+            this.lanes.put(i, new Vector<>());
         }
     }
 
     public void addVehicle(int lane, Vehicle vehicle){
         //creates a list object to reference lists within the hash map
-        List<Vehicle> vehicles;
+        Vector<Vehicle> vehicles;
         vehicles = lanes.get(lane);
         vehicles.add(vehicle);
         lanes.put(lane, vehicles);
@@ -40,7 +43,7 @@ public class Highway {
     }
 
     public void removeVehicle(int lane, Vehicle vehicle){
-        List<Vehicle> vehicles;
+        Vector<Vehicle> vehicles;
         vehicles = lanes.get(lane);
         vehicles.remove(vehicle);
         lanes.put(lane, vehicles);
@@ -60,7 +63,16 @@ public class Highway {
         }
     }
 
-    public void setLanes(HashMap<Integer, List<Vehicle>> lanes) {
+    public void update(){
+        Vector<Vehicle> vehicles= lanes.get(0);
+        for(int i = vehicles.size()-1; i>=0; i--){
+            if(vehicles.get(i) != null){
+                System.out.println("yes");
+            }
+        }
+    }
+
+    public void setLanes(HashMap<Integer, Vector<Vehicle>> lanes) {
         this.lanes = lanes;
     }
 
@@ -88,7 +100,7 @@ public class Highway {
         return numVehicles;
     }
 
-    public HashMap<Integer, List<Vehicle>> getLanes() {
+    public HashMap<Integer, Vector<Vehicle>> getLanes() {
         return lanes;
     }
 
