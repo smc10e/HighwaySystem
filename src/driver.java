@@ -1,5 +1,6 @@
 import javafx.scene.layout.Pane;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -13,9 +14,8 @@ import java.util.Random;
  */
 public class driver {
 
-    static Frame frame = new Frame();
-    static Panel panel = new Panel();
-    static TextArea textArea = new TextArea();
+    static JFrame frame = new JFrame();
+    static JTextArea textArea = new JTextArea();
     static WindowListener window = new WindowAdapter() {
         @Override
         public void windowClosing(WindowEvent e) {
@@ -29,9 +29,10 @@ public class driver {
         Random rand = new Random();
         Random rand2 = new Random();
 
-        panel.add(textArea);
-        frame.add(panel);
-        frame.setSize(500,300);
+        textArea.setEditable(false);
+        frame.add(textArea);
+        frame.setLocationRelativeTo(null);
+        frame.setSize(400,200);
         frame.setTitle("Highway");
         frame.setVisible(true);
         frame.addWindowListener(window);
