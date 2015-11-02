@@ -55,29 +55,7 @@ public class Highway {
         numVehicles--;
     }
 
-    public void display(){
-        List<Vehicle> vehicles;
-        Vehicle vehicle;
-        System.out.println("---------------------------------------------------------------------------------");
-        for(int i =0; i < numLanes; i++){
-            System.out.print("L" + i + ": ");
-            vehicles = lanes.get(i);
-            for(int j = 0; j < vehicles.size(); j++){
-                vehicle = vehicles.get(j);
-                if(vehicle != null) {
-                    if (vehicle.getType() == "Car") {
-                        System.out.print("C" + vehicle.getSpeed() + " ");
-                    }
-                }
-                else{
-                    System.out.print("   ");
-                }
-            }
-            System.out.println();
-            System.out.println("---------------------------------------------------------------------------------");
-        }
-        System.out.println();
-    }
+
 
     public void update(){
         for(int l = 0; l < numLanes; l++) {
