@@ -18,7 +18,12 @@ public class Highway {
 
         //Vector<Vehicle> v;
         for(int i = 0; i < numLanes; i++){
-            lanes.put(i, new Vector<>());
+            Vector<Vehicle> vehicles = new Vector<>();
+            for(int j = 0; j < laneLength; j++){
+                vehicles.add(j, null);
+                // lanes.put(i, new Vector<>(laneLength));
+            }
+            lanes.put(i, vehicles);
         }
 
         //v.setSize(25);
@@ -37,7 +42,7 @@ public class Highway {
         //creates a list object to reference lists within the hash map
         Vector<Vehicle> vehicles;
         vehicles = lanes.get(lane);
-        vehicles.add(vehicle);
+        vehicles.set(0, vehicle);
         lanes.put(lane, vehicles);
         numVehicles++;
     }
@@ -53,22 +58,49 @@ public class Highway {
     public void display(){
         List<Vehicle> vehicles;
         Vehicle vehicle;
+        System.out.println("---------------------------------------------------------------------------------");
         for(int i =0; i < numLanes; i++){
+            System.out.print("L" + i + ": ");
             vehicles = lanes.get(i);
             for(int j = 0; j < vehicles.size(); j++){
                 vehicle = vehicles.get(j);
-                System.out.print(vehicle.getId() + " ");
+                if(vehicle != null) {
+                    if (vehicle.getType() == "Car") {
+                        System.out.print("C" + vehicle.getSpeed() + " ");
+                    }
+                }
+                else{
+                    System.out.print("   ");
+                }
             }
             System.out.println();
+            System.out.println("---------------------------------------------------------------------------------");
         }
+        System.out.println();
     }
 
     public void update(){
-        Vector<Vehicle> vehicles= lanes.get(0);
-        for(int i = vehicles.size()-1; i>=0; i--){
-            if(vehicles.get(i) != null){
-                System.out.println("yes");
+        for(int l = 0; l < numLanes; l++) {
+            Vector<Vehicle> vehicles = lanes.get(l);
+            Vehicle vehicle;
+            for (int i = vehicles.size() - 1; i >= 0; i--) {
+                vehicle = vehicles.get(i);
+                if (vehicle != null) {
+                    int newSpot = i + vehicle.getSpeed();
+                    if (newSpot < laneLength) {
+                        for(int j = i+1; j <= newSpot; j++){
+                            if(vehicles.elementAt(j) != null){
+                                newSpot = j-1;
+                                vehicle.setSpeed(vehicles.elementAt(j).getSpeed());
+                                break;
+                            }
+                        }
+                        vehicles.set(newSpot, vehicle);
+                    }
+                    vehicles.set(i, null);
+                }
             }
+            lanes.put(l, vehicles);
         }
     }
 

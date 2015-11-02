@@ -14,7 +14,7 @@ public class Vehicle {
 
     public Vehicle(){
         numDoors = 4;
-        type = "Sedan";
+        type = "Car";
         make = "Honda";
         model = "Civic";
         speed = 0;
